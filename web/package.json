@@ -1,0 +1,15 @@
+{
+  "name": "calculator",
+  "version": "1.0.0",
+  "description": "front end of calculator",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "finder",
+  "license": "ISC",
+  "devDependencies": {
+    "install": "^0.8.2",
+    "webpack": "^1.13.3"
+  }
+}

@@ -2,7 +2,9 @@
  * Alipay.com Inc.
  * Copyright (c) 2004-2016 All Rights Reserved/
  */
-package com.passiongroup.web.account;
+package com.passiongroup.web.param.account;
+
+
 
 /**
  *
@@ -12,7 +14,8 @@ package com.passiongroup.web.account;
 public class UserInfo {
     // TODO: 2016/10/31 @石丰华
     private String name;
-    private Integer age=new Integer();
+    private Integer age;
+    // TODO: 2016/11/24 把gender类型改成String 
     private GenderEnum gender;
     private String email;
     private String password;
@@ -40,5 +43,5 @@ public class UserInfo {
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        this.password = password;}
     }

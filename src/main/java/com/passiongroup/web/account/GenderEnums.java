@@ -11,8 +11,21 @@ package com.passiongroup.web.account;
  */
 public enum GenderEnums {
 // TODO: 2016/10/31 @石丰华
-private Integer code=new Integer();
-public enum Gender {男,女,String value=null}
+
+        MAN(0, "男"),
+        WOMAN(1, "女"),
+        UNKNOWN(3, "不确定");
+
+        private Integer code;
+        private String description;
+
+        GenderEnums(Integer code, String description) {
+                this.code = code;
+                this.description = description;
+        }
+}
+
+/**public enum Gender {男,女,String value=null}
 
 public void GetGender(){
         return gender;
@@ -21,9 +34,7 @@ public void SetGender(Sring gender){
         this.gender=gender;
         }
 
-public String Value (String v){
-        value=v;
-        }
+
 public class Description{
     public static void main(String args[]){
 
@@ -47,4 +58,4 @@ public class Description{
     }
 }
 
-}
+}*/

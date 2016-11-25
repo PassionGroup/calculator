@@ -4,3 +4,4 @@ target/
 .project
 npm-debug.log
 *.iml
+web/node_modules/

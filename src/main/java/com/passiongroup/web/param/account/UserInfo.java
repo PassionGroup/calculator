@@ -13,7 +13,6 @@ import com.passiongroup.biz.model.GenderEnums;
  * @version $Id: UserInfo.java, V 0.1 2016-10-31 19:01 Finderhu Exp $
  */
 public class UserInfo {
-    // TODO: 2016/10/31 @石丰华
     private String name;
 
     private Integer age ;

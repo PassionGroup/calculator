@@ -1,14 +1,14 @@
-package com.passiongroup.web.account;
+package com.passiongroup.web.param.account;
 
-import com.passiongroup.web.param.account.UserInfo;
 import org.testng.annotations.Test;
 
 import static org.testng.Assert.*;
 
 /**
- * Created by Administrator on 2016/11/25.
+ * Created by longhuai.hlh on 2016/11/25.
  */
 public class UserInfoTest {
+
     @Test
     public void testGetEmail() throws Exception {
         UserInfo userinfo=new UserInfo("lisi",  new Integer(18)," ","321");

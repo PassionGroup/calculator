@@ -1,14 +1,16 @@
-/**
- * Created by longhuai.hlh on 2016/11/25.
- */
 import React from 'react';
-import ReactDom from 'react-dom';
+import ReactDOM from 'react-dom';
+import './index.css';
+import { DatePicker } from 'antd';
 
-// class App{
-//     render()
-// }
+function App() {
+  return (
+    <div style={{ margin: 100 }}>
+      <h1>AntDesign Demo</h1>
+      <hr /><br />
+      <DatePicker />
+    </div>
+  );
+}
 
-ReactDom.render(
-    "Hello,world!",
-        document.getElementById("context")
-        );
+ReactDOM.render(<App />, document.getElementById('root'));

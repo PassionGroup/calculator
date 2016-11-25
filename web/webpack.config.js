@@ -1,11 +1,10 @@
-//noinspection JSUnresolvedVariable
-module.exports = {
-    entry:"./index.js",
-    output:{
-        path:__dirname,
-        filename:"bundle.js"
-    },
-    loaders:[
-        {test:/\.js$/, loader:"babel-loader"}
-    ]
-}
+
+module.exports = function(webpackConfig) {
+  webpackConfig.babel.plugins.push('transform-runtime');
+  webpackConfig.babel.plugins.push(['import', {
+    libraryName: 'antd',
+    style: 'css',
+  }]);
+
+  return webpackConfig;
+};

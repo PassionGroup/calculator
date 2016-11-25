@@ -5,7 +5,7 @@
 package com.passiongroup.web.controller;
 
 import com.passiongroup.util.Result;
-import com.passiongroup.web.account.UserInfo;
+import com.passiongroup.web.param.account.UserInfo;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

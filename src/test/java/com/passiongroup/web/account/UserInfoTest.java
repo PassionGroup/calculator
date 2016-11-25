@@ -1,5 +1,6 @@
 package com.passiongroup.web.account;
 
+import com.passiongroup.web.param.account.UserInfo;
 import org.testng.annotations.Test;
 
 import static org.testng.Assert.*;

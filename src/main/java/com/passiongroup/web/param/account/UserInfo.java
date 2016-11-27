@@ -16,18 +16,22 @@ public class UserInfo {
     private String name;
 
     private Integer age ;
-    private GenderEnums gender;
+    private String gender;
 
     private String email;
     private String password;
 
-
-    public UserInfo(String name, Integer age, String email, String password) {
+    public UserInfo(String name, String gender, Integer age, String email, String password) {
         this.name = name;
+        this.gender = gender;
         this.age = age;
         this.email = email;
         this.password = password;
     }
+
+    public String getGender() {return gender;}
+
+    public void setGender(String gender) {this.gender = gender;}
 
     public String getName() {
         return name;

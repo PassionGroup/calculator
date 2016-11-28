@@ -2,7 +2,7 @@
  * Created by longhuai.hlh on 2016/11/25.
  */
 import React,{Component} from 'react';
-import ajax from '@alipay/ajax';
+// import ajax from '@alipay/ajax';
 import {Button} from 'antd';
 
 class Login extends Component{
@@ -11,13 +11,13 @@ class Login extends Component{
   }
 
   sendMessage(){
-    ajax({
-        url:'users',
-        type:'get',
-        success: (result)=>{
-            console.log('result is:' + result);
-        }
-    })
+    // ajax({
+    //     url:'users',
+    //     type:'get',
+    //     success: (result)=>{
+    //         console.log('result is:' + result);
+    //     }
+    // })
   }
 
   render(){

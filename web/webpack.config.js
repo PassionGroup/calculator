@@ -5,6 +5,6 @@ module.exports = function(webpackConfig) {
     libraryName: 'antd',
     style: 'css',
   }]);
-    webpackConfig.output.path = path.join(__dirname,'..');
+    webpackConfig.output.path = path.join(__dirname,'../src/main/resources/static');
   return webpackConfig;
 };

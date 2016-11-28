@@ -5,6 +5,6 @@ module.exports = function(webpackConfig) {
     libraryName: 'antd',
     style: 'css',
   }]);
-
+  webpackConfig.output.path = '../';
   return webpackConfig;
 };

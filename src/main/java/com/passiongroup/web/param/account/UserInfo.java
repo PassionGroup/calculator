@@ -5,8 +5,6 @@
 package com.passiongroup.web.param.account;
 
 
-import com.passiongroup.biz.model.GenderEnums;
-
 /**
  *
  * @author Finderhu
@@ -20,6 +18,9 @@ public class UserInfo {
 
     private String email;
     private String password;
+
+    public UserInfo() {
+    }
 
     public UserInfo(String name, String gender, Integer age, String email, String password) {
         this.name = name;

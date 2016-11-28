@@ -4,29 +4,16 @@ package com.passiongroup.biz.model;
  * Created by longhuai.hlh on 2016/11/24.
  */
 public class User {
-    // TODO: 2016/11/24 石丰华，该类与UserInfo的唯一不同为gender 的类型为枚举。
-
     private String name;
     private Integer age ;
-
-    public enum GenderEnums
-    {   MAN(0, "男"),
-        WOMAN(1, "女"),
-        UNKNOWN(3, "不确定");
-
-        private final Integer code;
-        private final String description;
-
-        GenderEnums(Integer code, String description) {
-            this.code = code;
-            this.description = description;
-        }
-    }
-
+    private GenderEnum gender;
     private String email;
     private String password;
 
-    public User(String name,  Integer age, String email, String password) {
+    public User() {
+    }
+
+    public User(String name, Integer age, String email, String password) {
         this.name = name;
 
         this.age = age;
@@ -59,6 +46,14 @@ public class User {
     }
 
     public void setPassword(String password) {
-        this.password = password;}
+        this.password = password;
+    }
 
+    public GenderEnum getGender() {
+        return gender;
+    }
+
+    public void setGender(GenderEnum gender) {
+        this.gender = gender;
+    }
 }

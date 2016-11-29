@@ -53,7 +53,5 @@ public class User {
         return gender;
     }
 
-    public void setGender(GenderEnum gender) {
-        this.gender = gender;
-    }
+    public void setGender(GenderEnum gender) { this.gender = gender; }
 }

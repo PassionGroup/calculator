@@ -1,8 +1,9 @@
 /**
  * Created by longhuai.hlh on 2016/11/25.
  */
+//noinspection JSUnresolvedVariable
 import React,{Component} from 'react';
-// import ajax from '@alipay/ajax';
+import $ from 'jquery';
 import {Button} from 'antd';
 
 class Login extends Component{
@@ -11,13 +12,17 @@ class Login extends Component{
   }
 
   sendMessage(){
-    // ajax({
-    //     url:'users',
-    //     type:'get',
-    //     success: (result)=>{
-    //         console.log('result is:' + result);
-    //     }
-    // })
+      $.ajax({
+          url:'/user',
+          dataType: 'json',
+          cache: false,
+          success: function(data) {
+              console.log(data);
+          }.bind(this),
+          error: function(xhr, status, err) {
+              console.error('get no data');
+          }.bind(this)
+      });
   }
 
   render(){

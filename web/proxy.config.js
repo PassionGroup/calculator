@@ -1,5 +1,5 @@
 module.exports = {
     // Mock 数据返回
-    'GET /users': [{name:'sorrycc'}, {name:'pigcan'}],
-    'GET /users/1': {name:'jaredleechn'},
+    'GET /user':{data:'data'},
+    'GET /account/register':{success:true,errorCode:0,resultObject:undefined}
 };

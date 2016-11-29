@@ -10,7 +10,7 @@ function App() {
     <div style={{ margin: 100 }}>
       <h1>AntDesign Demo</h1>
       <hr /><br />
-      {/*<Login/>*/}
+      <Login/>
       <Register/>
     </div>
   );

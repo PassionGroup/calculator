@@ -1,10 +1,11 @@
 {
   "private": true,
   "entry": {
-    "index": "./index.js"
+    "index": "./src/index.jsx"
   },
   "dependencies": {
     "antd": "^2.1.0",
+    "jquery": "^3.1.1",
     "react": "^15.1.0",
     "react-dom": "^15.1.0"
   },
@@ -16,6 +17,7 @@
     "babel-plugin-transform-runtime": "^6.8.0",
     "babel-runtime": "^6.9.2",
     "dora": "0.4.x",
+    "dora-plugin-proxy": "^0.8.5",
     "dora-plugin-webpack": "^0.8.1",
     "eslint": "^3.8.1",
     "eslint-config-airbnb": "^12.0.0",
@@ -33,6 +35,7 @@
     "build": "atool-build",
     "lint": "eslint --ext .js,.jsx src/",
     "start": "dora --plugins webpack",
-    "test": "atool-test-mocha ./**/__tests__/*-test.js"
+    "test": "atool-test-mocha ./**/__tests__/*-test.js",
+    "dev": "dora --port 8000 --plugins dora-plugin-proxy,webpack"
   }
 }

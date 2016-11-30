@@ -8,7 +8,7 @@ import com.passiongroup.util.CCException;
  * Created by longhuai.hlh on 2016/11/24.
  */
 public interface UserRepository {
-    public String getPassword(String userName);
+    public String getPassword(String userName) throws CCException;
     public void updateUserState(UserDO userDO) throws CCException;
     public boolean isUserNameExist(String userName);
     public boolean isEmailExist(String email);

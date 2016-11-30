@@ -7,7 +7,7 @@ import java.text.MessageFormat;
 /**
  * Created by longhuai.hlh on 2016/11/24.
  */
-public class CCException extends RuntimeException {
+public class CCException extends Exception {
 
     private static final long serialVersionUID = -2925249508606048271L;
 

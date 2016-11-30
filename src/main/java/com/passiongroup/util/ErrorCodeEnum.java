@@ -5,7 +5,8 @@ package com.passiongroup.util;
  */
 public enum ErrorCodeEnum {
     UPDATE_USER_STATE_ERROR("update user {0}'s state error"),
-    GET_NO_PASSWORD("user {0} is not register yet")
+    GET_NO_PASSWORD("user {0} is not register yet"),
+    ADD_USER("Add user to database error,user parameter: {0}")
     ;
 
     private String description;

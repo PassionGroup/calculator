@@ -1,5 +1,6 @@
 package com.passiongroup.dal.repository;
 
+import com.passiongroup.biz.model.User;
 import com.passiongroup.dal.mapper.UserMapper;
 import com.passiongroup.dal.model.UserDO;
 import com.passiongroup.util.CCException;
@@ -13,6 +14,7 @@ import org.springframework.util.StringUtils;
  */
 @Component
 public class UserRepositoryImpl implements UserRepository {
+    @SuppressWarnings("SpringJavaAutowiringInspection")
     @Autowired
     private UserMapper userMapper;
 
@@ -27,6 +29,21 @@ public class UserRepositoryImpl implements UserRepository {
 
     @Override
     public void updateUserState(UserDO userDO) throws CCException {
+
+    }
+
+    @Override
+    public boolean isUserNameExist(String userName) {
+        return false;
+    }
+
+    @Override
+    public boolean isEmailExist(String email) {
+        return false;
+    }
+
+    @Override
+    public void addUser(User user) throws CCException {
 
     }
 }

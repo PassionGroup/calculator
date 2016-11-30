@@ -2,7 +2,6 @@ package com.passiongroup.dal.repository;
 
 import com.passiongroup.biz.model.User;
 import com.passiongroup.dal.mapper.UserMapper;
-import com.passiongroup.dal.model.UserDO;
 import com.passiongroup.util.CCException;
 import com.passiongroup.util.ErrorCodeEnum;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +27,7 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     @Override
-    public void updateUserState(UserDO userDO) throws CCException {
+    public void updateUserState(User user) throws CCException {
 
     }
 

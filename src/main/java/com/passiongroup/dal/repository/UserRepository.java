@@ -1,7 +1,6 @@
 package com.passiongroup.dal.repository;
 
 import com.passiongroup.biz.model.User;
-import com.passiongroup.dal.model.UserDO;
 import com.passiongroup.util.CCException;
 
 /**
@@ -9,7 +8,7 @@ import com.passiongroup.util.CCException;
  */
 public interface UserRepository {
     public String getPassword(String userName) throws CCException;
-    public void updateUserState(UserDO userDO) throws CCException;
+    public void updateUserState(User user) throws CCException;
     public boolean isUserNameExist(String userName);
     public boolean isEmailExist(String email);
     public void addUser(User user) throws CCException;

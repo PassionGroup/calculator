@@ -18,10 +18,10 @@ public class UserRepositoryImpl implements UserRepository {
     private UserMapper userMapper;
 
     @Override
-    public String getPassword(String userName) throws CCException {
-        String password = userMapper.findPasswordByUsername(userName);
+    public String getPassword(String userInfo) throws CCException {
+        String password = userMapper.findPasswordByUsername(userInfo);
         if(StringUtils.isEmpty(password)){
-            throw new CCException(ErrorCodeEnum.GET_NO_PASSWORD,userName);
+            throw new CCException(ErrorCodeEnum.GET_NO_PASSWORD, userInfo);
         }
         return password;
     }

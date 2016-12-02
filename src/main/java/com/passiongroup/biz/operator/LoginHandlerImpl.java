@@ -17,38 +17,54 @@ import org.springframework.util.StringUtils;
  * @version $Id: RegisterHandler.java, V 0.1 2016-11-29 23:02 Finderhu Exp $
  */
 @Service
-public class LoginHandlerImpl extends LoginHandler {
-    private static final Logger LOGGER = Logger.getLogger(com.passiongroup.biz.operator.LoginHandlerImpl.class);
+public class LoginHandlerImpl implements LoginHandler {
+    private static final Logger LOGGER = Logger.getLogger(LoginHandlerImpl.class);
 
     @Autowired
-    private UserMapper userMapper;
     private UserRepository userRepository;
-    private User user;
-    Result result = new Result(false,null,null);
-    String password = userMapper.findPasswordByUsername("finder");
-    if(userRepository.addUser("finder").StringUtils.equals(user.getName())){
-        if(password.StringUtils.equals(user.getPassword())){
-            result.setSuccess(true);
-        }
-        else{
-            LOGGER.warn("参数校验不通过");
+
+    @Override
+    public Result login(User user) throws CCException {
+        Result result = new Result(false,null,null);
+        /**输入参数校验*/
+        if(!checkParam(user)){
             result.setErrorCode(-1);
+            return result;
+        }
+        String userInfo = null;
+        /**验证用户名*/
+        if(StringUtils.hasText(user.getName())){
+            //if user name is not exist then return.
+            if(!userRepository.isUserNameExist(user.getName())){
+                result.setErrorCode(-3);
+                return result;
+            }
+            userInfo = user.getName();
+        }
+        /**验证电子邮箱*/
+        //if email is not exist then return
+        // FIXME: 2016/12/2 shifenghua
+        else if( ){
+
+        }
+
+        /**验证密码*/
+        //if password is not correct then return
+        String passwordInDatabase = userRepository.getPassword(userInfo);
+        if(!passwordInDatabase.equals(user.getPassword())){
+            result.setErrorCode(-2);
+            return result;
+        }else {
+            userRepository.updateUserState(user);
+            result.setSuccess(true);
+            user.setPassword("");
+            result.setResultObject(user);
+            return result;
         }
     }
-    if(!userRepository.addUser("finder").StringUtils.equals(user.getName())){
-        if(userRepository.isEmailExist.StringUtils.equals(user.getEmail())){
-            if(password.StringUtils.equals(user.getPassword())){
-                result.setSuccess(true);
-            }
-            else{
-                LOGGER.warn("参数校验不通过");
-                result.setErrorCode(-1);
-            }
-        }
-        else {
 
-                LOGGER.error(user.getMessage());
-                result.setErrorCode(-4);
-        }
+    /**如果参数通过校验则返回true,否则返回false*/
+    public boolean checkParam(User user) {
+        // FIXME: 2016/12/2 shifenghua
     }
 }

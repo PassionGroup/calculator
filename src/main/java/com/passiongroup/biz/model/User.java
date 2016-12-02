@@ -9,13 +9,14 @@ public class User {
     private GenderEnum gender;
     private String email;
     private String password;
+    private String message;
 
     public User() {
     }
 
-    public User(String name, Integer age, String email, String password) {
+    public User(String name, Integer age, String email, String password,String message) {
         this.name = name;
-
+        this.message=message;
         this.age = age;
         this.email = email;
         this.password = password;
@@ -54,4 +55,8 @@ public class User {
     }
 
     public void setGender(GenderEnum gender) { this.gender = gender; }
+
+    public String getMessage() {return message;}
+
+
 }

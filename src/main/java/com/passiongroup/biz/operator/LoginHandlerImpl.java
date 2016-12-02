@@ -2,6 +2,7 @@ package com.passiongroup.biz.operator;
 
 import com.passiongroup.biz.model.User;
 import com.passiongroup.biz.operator.RegisterHandler;
+import com.passiongroup.dal.mapper.UserMapper;
 import com.passiongroup.dal.repository.UserRepository;
 import com.passiongroup.util.CCException;
 import com.passiongroup.util.Result;
@@ -20,28 +21,34 @@ public class LoginHandlerImpl extends LoginHandler {
     private static final Logger LOGGER = Logger.getLogger(com.passiongroup.biz.operator.LoginHandlerImpl.class);
 
     @Autowired
+    private UserMapper userMapper;
     private UserRepository userRepository;
-    private OperationOfUser operationOfUser;
-    public Result login(User user) {
-        Result result=new Result(false,null,null);
-        if(result.getSuccess()){
-            //userRepository.addUser(user);
+    private User user;
+    Result result = new Result(false,null,null);
+    String password = userMapper.findPasswordByUsername("finder");
+    if(userRepository.addUser("finder").StringUtils.equals(user.getName())){
+        if(password.StringUtils.equals(user.getPassword())){
             result.setSuccess(true);
-            result.setResultObject(user.getName());
-            operationOfUser.login();
-            try {
-                userRepository.getPassword(" finder ");
-            } catch (CCException e) {
-                e.printStackTrace();
+        }
+        else{
+            LOGGER.warn("参数校验不通过");
+            result.setErrorCode(-1);
+        }
+    }
+    if(!userRepository.addUser("finder").StringUtils.equals(user.getName())){
+        if(userRepository.isEmailExist.StringUtils.equals(user.getEmail())){
+            if(password.StringUtils.equals(user.getPassword())){
+                result.setSuccess(true);
             }
-            return result;
+            else{
+                LOGGER.warn("参数校验不通过");
+                result.setErrorCode(-1);
+            }
         }
-        if(userRepository.validatePassword("  ")){
-            userRepository.updateUserState(User user);
+        else {
 
+                LOGGER.error(user.getMessage());
+                result.setErrorCode(-4);
         }
-
-
-
-    return result;}
+    }
 }

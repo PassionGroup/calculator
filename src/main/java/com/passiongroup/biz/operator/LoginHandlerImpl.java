@@ -76,10 +76,18 @@ public class LoginHandlerImpl implements LoginHandler {
         if(user == null){
             return false;
         }
-        if(!StringUtils.hasText(user.getName()) ||
-                !StringUtils.hasText(user.getEmail()) ||
-                !StringUtils.hasText(user.getPassword())){
+        if(!StringUtils.hasText(user.getName()) &
+                !StringUtils.hasText(user.getEmail())){
             return false;
+        }
+        if(StringUtils.hasText(user.getName()) ||
+                StringUtils.hasText(user.getEmail())){
+            if(!StringUtils.hasText(user.getPassword())){
+                return false;
+            }
+            else{
+                return true;
+            }
         }
         return true;
     }

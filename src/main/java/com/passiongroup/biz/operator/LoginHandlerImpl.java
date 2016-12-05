@@ -31,21 +31,27 @@ public class LoginHandlerImpl implements LoginHandler {
             result.setErrorCode(-1);
             return result;
         }
+
         String userInfo = null;
         /**验证用户名*/
         if(StringUtils.hasText(user.getName())){
             //if user name is not exist then return.
             if(!userRepository.isUserNameExist(user.getName())){
-                result.setErrorCode(-3);
+                result.setErrorCode(-2);
                 return result;
             }
             userInfo = user.getName();
         }
+
         /**验证电子邮箱*/
         //if email is not exist then return
         // FIXME: 2016/12/2 shifenghua
-        else if( ){
-
+        else if( StringUtils.hasText(user.getEmail())){
+            if(!userRepository.isEmailExist(user.getEmail())){
+                result.setErrorCode(-3);
+                return result;
+            }
+            userInfo = user.getEmail();
         }
 
         /**验证密码*/
@@ -66,5 +72,15 @@ public class LoginHandlerImpl implements LoginHandler {
     /**如果参数通过校验则返回true,否则返回false*/
     public boolean checkParam(User user) {
         // FIXME: 2016/12/2 shifenghua
+
+        if(user == null){
+            return false;
+        }
+        if(!StringUtils.hasText(user.getName()) ||
+                !StringUtils.hasText(user.getEmail()) ||
+                !StringUtils.hasText(user.getPassword())){
+            return false;
+        }
+        return true;
     }
 }

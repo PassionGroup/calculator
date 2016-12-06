@@ -87,22 +87,25 @@ public class LoginHandlerImplTest {
     @Test
     public void testCheckParam2() throws Exception {
         User user=new User( "",1,"","password","message");
-        assertTrue(!StringUtils.hasText(user.getName()) &
-                !StringUtils.hasText(user.getEmail()));
+        LoginHandlerImpl loginHandler = new LoginHandlerImpl();
+        boolean actual= loginHandler.checkParam(user);
+        assertTrue(!actual);
     }
 
     @Test
     public void testCheckParam3() throws Exception {
-        User user=new User( "",1,"email","password","message");
-        assertTrue((StringUtils.hasText(user.getName()) ||
-                StringUtils.hasText(user.getEmail())) & StringUtils.hasText(user.getPassword()));
+        User user=new User( "username",1,"email","","message");
+        LoginHandlerImpl loginHandler = new LoginHandlerImpl();
+        boolean actual= loginHandler.checkParam(user);
+        assertTrue(!actual);
     }
 
     @Test
     public void testCheckParam4() throws Exception {
-        User user=new User( "",1,"email","","message");
-        assertTrue((StringUtils.hasText(user.getName()) ||
-                StringUtils.hasText(user.getEmail())) & !StringUtils.hasText(user.getPassword()));
+        User user=new User( "username",1,"email","password","message");
+        LoginHandlerImpl loginHandler = new LoginHandlerImpl();
+        boolean actual= loginHandler.checkParam(user);
+        assertTrue(actual);
     }
 
 

@@ -22,6 +22,7 @@ public class LoginHandlerImpl implements LoginHandler {
 
     @Autowired
     private UserRepository userRepository;
+   // private UserMapper userMapper;
 
     @Override
     public Result login(User user) throws CCException {
@@ -48,7 +49,7 @@ public class LoginHandlerImpl implements LoginHandler {
         // FIXME: 2016/12/2 shifenghua
         else if( StringUtils.hasText(user.getEmail())){
             if(!userRepository.isEmailExist(user.getEmail())){
-                result.setErrorCode(-3);
+                result.setErrorCode(-2);
                 return result;
             }
             userInfo = user.getEmail();
@@ -58,7 +59,7 @@ public class LoginHandlerImpl implements LoginHandler {
         //if password is not correct then return
         String passwordInDatabase = userRepository.getPassword(userInfo);
         if(!passwordInDatabase.equals(user.getPassword())){
-            result.setErrorCode(-2);
+            result.setErrorCode(0);
             return result;
         }else {
             userRepository.updateUserState(user);

@@ -30,10 +30,10 @@ public class RegisterHandlerTest {
     public static Object[][] paramExcDataProvider(){
         return new Object[][]{
                 new Object[]{null,-1,"输入参数为空"},
-                new Object[]{new User(null,1,"email","password"),-1,"用户名为空"},
-                new Object[]{new User("username",1,null,"password"),-1,"邮箱为空"},
-                new Object[]{new User("username",1,"email",null),-1,"密码为空"},
-                new Object[]{new User(null,1,null,null),-1,"用户名、邮箱、密码都为空"}
+                new Object[]{new User("username",1,"email","password","message"),-1,"用户名为空"},
+                new Object[]{new User("username",1,"email","password","message"),-1,"邮箱为空"},
+                new Object[]{new User("username",1,"email","password","message"),-1,"密码为空"},
+                new Object[]{new User("username",1,"email","password","message"),-1,"用户名、邮箱、密码都为空"}
         };
     }
 
@@ -43,7 +43,7 @@ public class RegisterHandlerTest {
            userRepository.isUserNameExist(anyString);result = true;
         }};
         registerHandler.setUserRepository(userRepository);
-        Result result = registerHandler.register(new User("finder",1,"email","password"));
+        Result result = registerHandler.register(new User("username",1,"email","password","message"));
         assertEquals(result.getErrorCode().intValue(),-2,"用户名已经存在");
     }
 
@@ -54,7 +54,7 @@ public class RegisterHandlerTest {
             userRepository.isEmailExist(anyString);result = true;
         }};
         registerHandler.setUserRepository(userRepository);
-        Result result = registerHandler.register(new User("username",1,"email","password"));
+        Result result = registerHandler.register(new User("username",1,"email","password","message"));
         assertEquals(-3,result.getErrorCode().intValue(),"邮箱已经被使用");
     }
 
@@ -66,7 +66,7 @@ public class RegisterHandlerTest {
             userRepository.addUser(withAny(new User()));result = new CCException();
         }};
         registerHandler.setUserRepository(userRepository);
-        Result result = registerHandler.register(new User("username",1,"email","password"));
+        Result result = registerHandler.register(new User("username",1,"email","password","message"));
         assertEquals(result.getErrorCode().intValue(),-4,"用户数据写入数据库出错");
     }
 
@@ -77,7 +77,7 @@ public class RegisterHandlerTest {
             userRepository.isEmailExist(anyString);result = false;
         }};
         registerHandler.setUserRepository(userRepository);
-        Result result = registerHandler.register(new User("username",1,"email","password"));
+        Result result = registerHandler.register(new User("username",1,"email","password","message"));
         assertTrue(result.getSuccess());
     }
 }

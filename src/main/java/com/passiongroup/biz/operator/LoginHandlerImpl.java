@@ -92,4 +92,8 @@ public class LoginHandlerImpl implements LoginHandler {
         }
         return true;
     }
+
+    public void setUserRepository(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 }

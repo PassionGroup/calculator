@@ -77,8 +77,11 @@ public class LoginHandlerImplTest {
 
      @Test
     public void testCheckParam1() throws Exception {
-        User user=new User();
-        assertTrue(!StringUtils.hasText(user.getName()));
+         User user=new User();
+         user.setName("username");
+         LoginHandlerImpl loginHandler = new LoginHandlerImpl();
+         boolean actual = loginHandler.checkParam(user);
+         assertTrue(!actual);
    }
 
     @Test

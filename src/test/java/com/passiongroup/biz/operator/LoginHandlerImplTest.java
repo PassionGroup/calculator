@@ -20,7 +20,7 @@ public class LoginHandlerImplTest {
 
 //    @Autowired
 //    private UserRepository userRepository;
-//    private UserMapper userMapper;
+//    private UserMapper userMapper;从数据库取东西，只在repository里面用，其他类不直接使用
 
     @Mocked
     private UserRepository userRepository;
@@ -37,25 +37,45 @@ public class LoginHandlerImplTest {
     }
 
     @Test
-    public void testLogin2() throws Exception {
-        User user=new User( "username",1,"email","password","message");
-        Result result = new Result(false,null,null);
-        //assertTrue(StringUtils.hasText(user.getName()) & !userRepository.isUserNameExist(user.getName()));
-        result.setErrorCode(-2);
-        assertEquals(new Integer(-2), result.getErrorCode());
-        String userInfo = user.getName();
-        assertEquals( "username" ,userInfo);
+    public void testLoginEmailIsNotExist() throws Exception {
+        new Expectations(){{
+            userRepository.isUserNameExist(anyString);result = true;times = 1;
+            userRepository.isEmailExist(anyString);result = false;times = 1;
+        }};
+        LoginHandlerImpl loginHandler = new LoginHandlerImpl();
+        loginHandler.setUserRepository(userRepository);
+        Result result = loginHandler.login(new User("username",12,"email","password","message"));
+        assertEquals(result.getErrorCode().intValue(),-2);
     }
 
     @Test
-    public void testLogin3() throws Exception {
-        User user=new User( "username",1,"email","password","message");
-        Result result = new Result(false,null,null);
-        //assertTrue(StringUtils.hasText(user.getEmail()) & !userRepository.isUserNameExist(user.getName()));
-        result.setErrorCode(-2);
-        assertEquals(new Integer(-2), result.getErrorCode());
-        String userInfo = user.getEmail();
-        assertEquals( "email" ,userInfo);
+    public void testLoginPasswordIsNotTrue() throws Exception {
+        new Expectations(){{
+            userRepository.isUserNameExist(anyString);result = true;times = 1;
+            userRepository.isEmailExist(anyString);result = true;times = 1;
+            userRepository.getPassword(anyString).equals(withAny(new User()).getPassword());result=false;times=1;
+        }};
+        LoginHandlerImpl loginHandler = new LoginHandlerImpl();
+        loginHandler.setUserRepository(userRepository);
+        Result result = loginHandler.login(new User("username",12,"email","password","message"));
+        assertEquals(result.getErrorCode().intValue(),0);
+    }
+
+    @Test
+    public void testLoginPasswordIsTrue() throws Exception {
+        //User user= new User("username",12,"email","password","message");
+        new Expectations(){{
+            userRepository.isUserNameExist(anyString);result = true;times = 1;
+            userRepository.isEmailExist(anyString);result = true;times = 1;
+            userRepository.getPassword(anyString).equals(withAny(new User()).getPassword());result=true;times=1;
+        }};
+        LoginHandlerImpl loginHandler = new LoginHandlerImpl();
+        loginHandler.setUserRepository(userRepository);
+        userRepository.updateUserState(new User("username",12,"email","password","message"));
+        Result result = loginHandler.login(new User("username",12,"email","password","message"));
+        assertTrue(result.getSuccess());
+        assertEquals("",new User().getPassword());
+        //assertEquals(Object resultObject,result.getResultObject());
     }
 
     @Test
